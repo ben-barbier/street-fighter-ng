@@ -1,0 +1,15 @@
+<h1>Arena</h1>
+
+<div>
+  <h2>Character 1</h2>
+  <div>{{ (arenaService.character1 | async)?.name }}</div>
+</div>
+
+<div>
+  <h2>Character 2</h2>
+  <div>{{ (arenaService.character2 | async)?.name }}</div>
+</div>
+
+<button mat-raised-button color="warn" (click)="fight()">
+  <mat-icon>sports_mma</mat-icon>
+</button>

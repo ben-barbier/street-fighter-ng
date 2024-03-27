@@ -1,0 +1,20 @@
+.card {
+  min-width: 150px;
+
+  .card-header {
+    height: 84px;
+
+    .header-image {
+      background-size: cover;
+    }
+  }
+
+  .character-name {
+    max-width: min-content;
+  }
+
+  .mat-mini-fab {
+    margin-right: 8px;
+  }
+}
+

@@ -1,0 +1,23 @@
+<mat-card class="card">
+  <mat-card-header class="card-header">
+    <img mat-card-avatar class="header-image" [src]="pictureUrl" />
+    <mat-card-title class="character-name">{{ character.name }}</mat-card-title>
+    <mat-card-subtitle>{{ character.country }}</mat-card-subtitle>
+  </mat-card-header>
+  <img mat-card-image [src]="pictureUrl" alt="Photo of a Shiba Inu" />
+  <mat-card-content>
+    <div>stamina: {{ character.stamina }}</div>
+    <div>stun: {{ character.stun }}</div>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-mini-fab color="warn" (click)="removeCharacter()">
+      <mat-icon>delete</mat-icon>
+    </button>
+    <a [routerLink]="['/character', character.id]" mat-mini-fab color="primary">
+      <mat-icon>visibility</mat-icon>
+    </a>
+    <button mat-mini-fab color="accent" (click)="addOnArena()">
+      <mat-icon>sports_kabaddi</mat-icon>
+    </button>
+  </mat-card-actions>
+</mat-card>
