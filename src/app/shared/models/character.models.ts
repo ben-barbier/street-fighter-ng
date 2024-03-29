@@ -1,4 +1,4 @@
-export interface Character {
+export interface CharacterDTO {
   id: string;
   order: number;
   name: string;
@@ -6,3 +6,5 @@ export interface Character {
   stun: number;
   country: string;
 }
+
+export type Character = CharacterDTO & { countryFlagUrl: string };

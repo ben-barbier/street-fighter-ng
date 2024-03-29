@@ -1,15 +1,15 @@
 import { Injectable } from '@angular/core';
-import { Character } from '../models/character.model';
+import { Character, CharacterDTO } from '../models/character.models';
 import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ArenaService {
-  public character1 = new BehaviorSubject<Character | null>(null);
-  public character2 = new BehaviorSubject<Character | null>(null);
+  public character1 = new BehaviorSubject<CharacterDTO | null>(null);
+  public character2 = new BehaviorSubject<CharacterDTO | null>(null);
 
-  public addCharacterOnArena(character: Character): void {
+  public addCharacterOnArena(character: CharacterDTO): void {
     if (this.character1.getValue() === null) {
       this.character1.next(character);
       return;

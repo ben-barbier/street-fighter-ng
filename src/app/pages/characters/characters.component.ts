@@ -1,6 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { CharactersService } from '../../shared/services/characters.service';
-import { Character } from '../../shared/models/character.model';
+import { Character, CharacterDTO } from '../../shared/models/character.models';
 import { CommonModule } from '@angular/common';
 import { CharacterCardComponent } from './character-card/character-card.component';
 import { RouterLinkWithHref } from '@angular/router';
@@ -14,15 +14,15 @@ import { RouterLinkWithHref } from '@angular/router';
 })
 export class CharactersComponent implements OnInit {
   private charactersService = inject(CharactersService);
-  public characters: Character[] = [];
+  public characters: CharacterDTO[] = [];
 
   ngOnInit(): void {
-    this.charactersService.getAll().subscribe((characters: Character[]) => {
+    this.charactersService.getAllWithCountry().subscribe((characters: CharacterDTO[]) => {
       this.characters = characters;
     });
   }
 
-  public removeCharacterFromChampionship(characterToRemove: Character) {
-    this.characters = this.characters.filter((character: Character) => character.id !== characterToRemove.id);
+  public removeCharacterFromChampionship(characterToRemove: CharacterDTO) {
+    this.characters = this.characters.filter((character: CharacterDTO) => character.id !== characterToRemove.id);
   }
 }

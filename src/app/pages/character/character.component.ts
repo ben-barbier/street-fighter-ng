@@ -1,7 +1,7 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CharactersService } from '../../shared/services/characters.service';
-import { Character } from '../../shared/models/character.model';
+import { Character, CharacterDTO } from '../../shared/models/character.models';
 import { ActivatedRoute, Params } from '@angular/router';
 
 @Component({
@@ -15,7 +15,7 @@ export class CharacterComponent implements OnInit {
   private charactersService = inject(CharactersService);
   private route = inject(ActivatedRoute);
 
-  public character?: Character;
+  public character?: CharacterDTO;
 
   ngOnInit(): void {
     this.route.params.subscribe((params: Params) => {

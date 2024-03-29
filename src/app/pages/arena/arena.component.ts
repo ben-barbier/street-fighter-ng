@@ -4,7 +4,7 @@ import { ArenaService } from '../../shared/services/arena.service';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { CharactersService } from '../../shared/services/characters.service';
-import { Character } from '../../shared/models/character.model';
+import { Character } from '../../shared/models/character.models';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { WinnerComponent } from './winner/winner.component';
 

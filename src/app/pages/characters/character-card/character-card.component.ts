@@ -1,5 +1,5 @@
 import { Component, EventEmitter, inject, Input, OnInit, Output } from '@angular/core';
-import { Character } from '../../../shared/models/character.model';
+import { Character, CharacterDTO } from '../../../shared/models/character.models';
 import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -16,8 +16,8 @@ import { CharactersService } from '../../../shared/services/characters.service';
   imports: [CommonModule, MatIconModule, MatButtonModule, MatCardModule, RouterLinkWithHref],
 })
 export class CharacterCardComponent implements OnInit {
-  @Input() public character!: Character;
-  @Output() private removed = new EventEmitter<Character>();
+  @Input() public character!: CharacterDTO;
+  @Output() private removed = new EventEmitter<CharacterDTO>();
 
   public pictureUrl?: string;
 
