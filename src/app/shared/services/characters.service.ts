@@ -1,11 +1,11 @@
-import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { concatAll, forkJoin, mergeMap, Observable, of, tap, toArray } from 'rxjs';
-import { Character, CharacterDTO } from '../models/character.models';
-import { environment } from '../../../environments/environment';
+import { inject, Injectable } from '@angular/core';
+import { concatAll, forkJoin, mergeMap, Observable, toArray } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { CountriesService } from './countries.service';
+import { environment } from '../../../environments/environment';
+import { Character, CharacterDTO } from '../models/character.models';
 import { CountryDTO } from '../models/country.models';
+import { CountriesService } from './countries.service';
 
 @Injectable({ providedIn: 'root' })
 export class CharactersService {
@@ -62,12 +62,14 @@ export class CharactersService {
     return this._http.put<void>(`${environment.apiUrl}/characters/${character.id}`, character);
   }
 
-  public delete(id: string): Observable<void> {
-    return this._http.delete<void>(`${environment.apiUrl}/characters/${id}`);
+  public delete(character: CharacterDTO): Observable<void> {
+    return this._http.delete<void>(`${environment.apiUrl}/characters/${character.id}`);
   }
 
-  public fight(character1: Character, character2: Character): Observable<Character> {
-    return this._http.get<Character>(`${environment.apiUrl}/characters/${character1.id}/fight?versus=${character2.id}`);
+  public fight(character1: CharacterDTO, character2: CharacterDTO): Observable<CharacterDTO> {
+    return this._http.get<CharacterDTO>(
+      `${environment.apiUrl}/characters/${character1.id}/fight?versus=${character2.id}`
+    );
   }
 
   public getPictureUrl(character: CharacterDTO): string {

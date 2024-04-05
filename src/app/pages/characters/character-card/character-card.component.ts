@@ -1,12 +1,14 @@
-import { Component, EventEmitter, inject, Input, OnInit, Output } from '@angular/core';
-import { Character, CharacterDTO } from '../../../shared/models/character.models';
 import { CommonModule } from '@angular/common';
+import { Component, EventEmitter, inject, Input, OnInit, Output } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
+import { MatIconModule } from '@angular/material/icon';
 import { RouterLinkWithHref } from '@angular/router';
-import { ArenaService } from '../../../shared/services/arena.service';
+import { Observable } from 'rxjs';
+import { CharacterDTO } from '../../../shared/models/character.models';
 import { CharactersService } from '../../../shared/services/characters.service';
+import { ArenaDispatchers } from '../../../store/dispatchers/arena.dispatchers';
+import { ArenaSelectors } from '../../../store/selectors/arena.selectors';
 
 @Component({
   selector: 'app-character-card',
@@ -16,22 +18,25 @@ import { CharactersService } from '../../../shared/services/characters.service';
   imports: [CommonModule, MatIconModule, MatButtonModule, MatCardModule, RouterLinkWithHref],
 })
 export class CharacterCardComponent implements OnInit {
+  private arenaDispatchers = inject(ArenaDispatchers);
+  private arenaSelectors = inject(ArenaSelectors);
+  private charactersService = inject(CharactersService);
+
   @Input() public character!: CharacterDTO;
   @Output() private removed = new EventEmitter<CharacterDTO>();
 
   public pictureUrl?: string;
-
-  private arenaService = inject(ArenaService);
-  private charactersService = inject(CharactersService);
+  public isInArena$?: Observable<boolean>;
 
   public ngOnInit(): void {
     this.pictureUrl = this.charactersService.getPictureUrl(this.character);
+    this.isInArena$ = this.arenaSelectors.isInArena$(this.character);
   }
   public removeCharacter(): void {
     this.removed.emit(this.character);
   }
 
   public addOnArena(): void {
-    this.arenaService.addCharacterOnArena(this.character);
+    this.arenaDispatchers.addFighter(this.character);
   }
 }

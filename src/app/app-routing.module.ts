@@ -18,7 +18,6 @@ const routes: Routes = [
         path: 'arena',
         loadComponent: () => import('./pages/arena/arena.component').then(m => m.ArenaComponent),
       },
-      // TODO: Liste des pays
     ],
   },
 ];

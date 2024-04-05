@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { provideMockStore } from '@ngrx/store/testing';
 import { ArenaComponent } from './arena.component';
 
 describe('ArenaComponent', () => {
@@ -8,9 +8,9 @@ describe('ArenaComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ ArenaComponent ]
-    })
-    .compileComponents();
+      imports: [ArenaComponent],
+      providers: [provideMockStore({})],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(ArenaComponent);
     component = fixture.componentInstance;

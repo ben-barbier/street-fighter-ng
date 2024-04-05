@@ -13,8 +13,13 @@
     max-width: min-content;
   }
 
-  .mat-mini-fab {
-    margin-right: 8px;
-  }
-}
+  .mat-card-actions {
+    justify-content: center;
+    display: flex;
 
+    .mat-mini-fab {
+      margin-right: 8px;
+    }
+  }
+
+}

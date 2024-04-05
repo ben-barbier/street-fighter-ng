@@ -1,8 +1,7 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { WinnerComponent } from './winner.component';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { WinnerComponent } from './winner.component';
 
 describe('WinnerComponent', () => {
   let component: WinnerComponent;

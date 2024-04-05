@@ -6,8 +6,8 @@
   </mat-card-header>
   <img mat-card-image [src]="pictureUrl" alt="Photo of a Shiba Inu" />
   <mat-card-content>
-    <div>stamina: {{ character.stamina }}</div>
-    <div>stun: {{ character.stun }}</div>
+    <div>Stamina: {{ character.stamina }}</div>
+    <div>Stun: {{ character.stun }}</div>
   </mat-card-content>
   <mat-card-actions>
     <button mat-mini-fab color="warn" (click)="removeCharacter()">
@@ -16,8 +16,8 @@
     <a [routerLink]="['/character', character.id]" mat-mini-fab color="primary">
       <mat-icon>visibility</mat-icon>
     </a>
-    <button mat-mini-fab color="accent" (click)="addOnArena()">
-      <mat-icon>sports_kabaddi</mat-icon>
+    <button mat-mini-fab [color]="(isInArena$ | async) === true ? 'accent' : 'primary'" (click)="addOnArena()">
+      <mat-icon>star</mat-icon>
     </button>
   </mat-card-actions>
 </mat-card>

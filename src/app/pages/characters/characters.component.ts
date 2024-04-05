@@ -1,9 +1,11 @@
-import { Component, inject, OnInit } from '@angular/core';
-import { CharactersService } from '../../shared/services/characters.service';
-import { Character, CharacterDTO } from '../../shared/models/character.models';
 import { CommonModule } from '@angular/common';
-import { CharacterCardComponent } from './character-card/character-card.component';
+import { Component, inject, OnInit } from '@angular/core';
 import { RouterLinkWithHref } from '@angular/router';
+import { Observable } from 'rxjs';
+import { CharacterDTO } from '../../shared/models/character.models';
+import { CharactersDispatchers } from '../../store/dispatchers/characters.dispatchers';
+import { CharactersSelectors } from '../../store/selectors/characters.selectors';
+import { CharacterCardComponent } from './character-card/character-card.component';
 
 @Component({
   selector: 'app-characters',
@@ -13,16 +15,16 @@ import { RouterLinkWithHref } from '@angular/router';
   imports: [CommonModule, CharacterCardComponent, RouterLinkWithHref],
 })
 export class CharactersComponent implements OnInit {
-  private charactersService = inject(CharactersService);
-  public characters: CharacterDTO[] = [];
+  private charactersDispatchers = inject(CharactersDispatchers);
+  private charactersSelectors = inject(CharactersSelectors);
+
+  public characters$: Observable<CharacterDTO[]> = this.charactersSelectors.characters$;
 
   ngOnInit(): void {
-    this.charactersService.getAllWithCountry().subscribe((characters: CharacterDTO[]) => {
-      this.characters = characters;
-    });
+    this.charactersDispatchers.getAll();
   }
 
   public removeCharacterFromChampionship(characterToRemove: CharacterDTO) {
-    this.characters = this.characters.filter((character: CharacterDTO) => character.id !== characterToRemove.id);
+    this.charactersDispatchers.delete(characterToRemove);
   }
 }
